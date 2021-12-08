@@ -1,0 +1,17 @@
+{
+  "name": "websiteaccessibilitytester",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "start": "node script"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pa11y": "^6.1.1",
+    "pally": "^0.2.3"
+  }
+}
