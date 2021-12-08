@@ -22,6 +22,14 @@ You can use React, Vue or any other framework of your choice but I want everybod
 
 ___
 
+### How to Meet WCAG ([Quick Reference](https://www.w3.org/WAI/WCAG21/quickref/))
+
+A customizable quick reference to Web Content Accessibility Guidelines (WCAG) 2 requirements (success criteria) and techniques. 
+
+For example, the [color contrast criteria](https://www.w3.org/WAI/WCAG21/quickref/#contrast-minimum) can be found in [Guideline 1.4 – Distinguishable](https://www.w3.org/WAI/WCAG21/quickref/#distinguishable).
+
+___
+
 ### Usage
 Install dependencies
 
