@@ -1,7 +1,7 @@
 const issuesOutput = document.querySelector('#issues')
 const issuesCount = document.querySelector('#number')
 const alertMessage = '<div class="alert alert-danger" role="alert">Something went wrong</div>'
-const emptyURL = '<div class='alert alert-danger" role="alert'>Please add a URL</div>'
+const emptyURL = '<div class="alert alert-danger" role="alert">Please add a URL</div>'
 const warningMessage = '<div class="alert alert-warning" role="slert">No issues found</div>'
 const csvMessage = '<div class="alert alert-warning" role="alert">CSV not available</div>'
 
@@ -35,7 +35,7 @@ const csvIssues = async (e) => {
 e.preventDefault()
 const url = document.querySelector('#url').value
 if(url === '') {
-issuesOutput.innerHTML = emptyUrl}
+issuesOutput.innerHTML = emptyUrl
 } else {
 const response = await fetch(`/api/test?url=${url}`)
 
