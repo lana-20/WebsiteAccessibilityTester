@@ -1,3 +1,9 @@
+const issuesOutput = document.querySelector('#issues')
+const alertMessage = '<div class="alert alert-danger" role="alert">Something went wrong</div>'
+const emptyURL = '<div class='alert alert-danger" role="alert'>Please add a URL</div>'
+const warningMessage = '<div class="alert alert-warning" role="slert">No issues found</div>'
+const csvMessage = '<div class="alert alert-warning" role="alert">CSV not available</div>'
+
 // Fetch accessibility issues
 const testAccessibility = async (e) => {
   e.preventDefault()
@@ -5,7 +11,7 @@ const testAccessibility = async (e) => {
   const url = document.querySelector('#url').value
 
   if(url === '') {
-    alert('Please add a url')
+    issuesOutput.innerHTML = emptyUrl
   } else {
     setLoading()
 
@@ -13,22 +19,54 @@ const testAccessibility = async (e) => {
 
     if(response.status !== 200) {
       setLoading(false)
-      alert('Something went wrong')
+      issuesOutput.innerHTML = alertMessage
     } else {
       const {issues} = await response.json()
       addIssuesToDOM(issues)
       setLoading(false)
+      document.getElementById("clearResults").classList.remove("hideButton")
+      document.getElementById("csvBtn").classList.remove("hideButton")
     }
   }
 }
+//Download CSV
+const csvIssues = async (e) => {
+e.preventDefault()
+const url = document.querySelector('#url').value
+if(url === '') {
+issuesOutput.innerHTML = emptyUrl}
+} else {
+const response = await fetch(`/api/test?url=${url}`)
+
+if(response.status !== 200) {
+  setLoading(false)
+  alert(csvMessage)
+} else {
+  const {issues} = await response.json()
+    const csv = issues.map(issue => {
+      return `${issue.code},${issue.message},${issue.context}`
+    }).join('\n')
+    
+    const csvBlob = new Blob([csv], {type: 'text/csv'})
+    const csvUrl = URL.createObjectURL(csvBlob)
+    const link = document.createElement('a')
+    link.href = csvUrl
+    link.download = 'issues_list.csv'
+    document.body.appendChild(link)
+    link.click()
+    document.bosy.removeChild(link)
+    }
+}
+}
+
+
 // Add issues to DOM
 const addIssuesToDOM = (issues) => {
-  const issuesOutput = document.querySelector('#issues')
 
   issuesOutput.innerHTML = ''
 
   if(issues.length === 0) {
-    issuesOutput.innerHTML = '<h4>No Issues Found</h4>'
+    issuesOutput.innerHTML = warningMessage
   } else {
     issues.forEach((issue) => {
       const output = `
@@ -58,6 +96,7 @@ const setLoading = (isLoading = true) => {
     loader.style.display = 'block'
   } else {
     loader.style.display = 'none'
+    issuesOutput.innerHTML = ''
   }
 }
 // Escape HTML
@@ -69,5 +108,13 @@ function escapeHTML(html) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;')
 }
+// Clear results
+const clearResults = (e) => {
+  e.preventDefault()
+  issuesOutput.innerHTML = ''
+  document.querySelector('#url').value = ''
+}
 
 document.querySelector('#form').addEventListener('submit', testAccessibility)
+document.querySelector('#clearResults').addEventListener('click', clearResults)
+document.querySelector('#csvBtn').addEventListener('click', csvIssues)
