@@ -1,4 +1,5 @@
 const issuesOutput = document.querySelector('#issues')
+const issuesCount = document.querySelector('#number')
 const alertMessage = '<div class="alert alert-danger" role="alert">Something went wrong</div>'
 const emptyURL = '<div class='alert alert-danger" role="alert'>Please add a URL</div>'
 const warningMessage = '<div class="alert alert-warning" role="slert">No issues found</div>'
@@ -51,23 +52,26 @@ if(response.status !== 200) {
     const csvUrl = URL.createObjectURL(csvBlob)
     const link = document.createElement('a')
     link.href = csvUrl
-    link.download = 'issues_list.csv'
+    link.download = 'Accessibility_issues_list_'+url.substring(12)+'.csv'
     document.body.appendChild(link)
     link.click()
     document.bosy.removeChild(link)
     }
+  }
 }
-}
-
 
 // Add issues to DOM
 const addIssuesToDOM = (issues) => {
 
   issuesOutput.innerHTML = ''
+  issuesCount.innerHTML = ''
 
   if(issues.length === 0) {
     issuesOutput.innerHTML = warningMessage
   } else {
+    issuesCount.innerHTML = `
+    <p class="alert alert-warning">${issues.length} issues found!</p>
+    `
     issues.forEach((issue) => {
       const output = `
       <div class="card mb-5">
@@ -112,6 +116,7 @@ function escapeHTML(html) {
 const clearResults = (e) => {
   e.preventDefault()
   issuesOutput.innerHTML = ''
+  issuesCount.innerHTML = ''
   document.querySelector('#url').value = ''
 }
 
