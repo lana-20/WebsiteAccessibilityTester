@@ -22,6 +22,12 @@ You can use React, Vue or any other framework of your choice but I want everybod
 
 ___
 
+### Sample Screenshots:
+
+![image](https://user-images.githubusercontent.com/70295997/167318427-bf573d02-3731-4cde-b6a9-34a587f90f1e.png)
+
+___
+
 ### How to Meet WCAG ([Quick Reference](https://www.w3.org/WAI/WCAG21/quickref/))
 
 A customizable quick reference to Web Content Accessibility Guidelines (WCAG) 2 requirements (success criteria) and techniques. 
@@ -39,6 +45,18 @@ Run
 
 `npm start`
 
+___
+
+### Fun Fact:
+GitHub launched Colorblind Themes Feature:
+
+![image](https://user-images.githubusercontent.com/70295997/167318123-58c64405-a3b2-4a9c-8732-9664242e4ba2.png)
+
+
+As mentioned in the feature preview, 
+"
+![image](https://user-images.githubusercontent.com/70295997/167318065-5ced961a-aef6-4b59-b095-66a6e96ca355.png)
+"
 ___
 
 The project is based off this [video](https://youtu.be/MO4vEAu3hKE) by Traversy Media.
